@@ -1,0 +1,22 @@
+.Button {
+  min-width: 124px;
+  padding: 8px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  border-radius: 4px;
+  background: #C9CCD9;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &_action_save {
+    background: #2EB4FF;
+  }
+
+  &_action_cancel {
+    background: #C9CCD9;
+  }
+}

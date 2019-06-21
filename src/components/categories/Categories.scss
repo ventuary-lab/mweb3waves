@@ -1,0 +1,30 @@
+.Categories {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+
+  &__item {
+    padding: 3px 14px;
+    font-size: 12px;
+    border: 1px solid #a0a6c3;
+    border-radius: 4px;
+    margin-right: 8px;
+    margin-bottom: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 18px;
+
+    &:hover {
+      border-color: #2eb4ff;
+      color: #2eb4ff;
+      cursor: pointer;
+    }
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+}

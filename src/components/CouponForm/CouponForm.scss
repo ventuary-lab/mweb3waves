@@ -1,0 +1,127 @@
+.CouponForm {
+  max-width: 936px;
+  padding: 58px;
+  background-color: #fff;
+
+  @media screen and (max-width: 1024px) {
+    padding: 38px 27px 46px;
+  }
+
+  @media screen and (max-width: 768px) {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  &__inner {
+    display: flex;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  &__col-left {
+    max-width: 307px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 32px;
+
+    @media screen and (max-width: 1024px) {
+      margin-right: 22px;
+    }
+
+    @media screen and (max-width: 768px) {
+      margin-right: 0;
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  &__col-right {
+    flex-grow: 1;
+    width: 1px; //todo fix
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      padding: 20px;
+      background-color: #fff;
+    }
+  }
+
+  &__coupon-card {
+    border: 1px solid #EFF0F2;
+  }
+
+  &__counter {
+    display: flex;
+    justify-content: center;
+
+    @media screen and (max-width: 768px) {
+      margin: 20px;
+    }
+  }
+
+
+  &__form-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    &:not(:last-child) {
+      margin-bottom: 24px;
+    }
+
+    @media screen and (max-width: 768px) {
+      flex-wrap: wrap;
+      &:not(:last-child) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__form-col {
+    width: 100%;
+
+    @media screen and (max-width: 768px) {
+      margin-bottom: 20px;
+    }
+
+    &_third {
+      width: 30%;
+
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
+    }
+
+    &_2-third {
+      width: 65%;
+
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
+    }
+
+  }
+
+  &__footer {
+    border-top: 1px solid #E9EAEC;
+    margin-top: 27px;
+    padding-top: 28px;
+    display: flex;
+    justify-content: flex-end;
+
+    & > button:last-child {
+      margin-left: 10px;
+    }
+
+    @media screen and (max-width: 768px) {
+      background-color: #fff;
+      justify-content: center;
+      margin: 0;
+      padding: 20px;
+
+    }
+  }
+}

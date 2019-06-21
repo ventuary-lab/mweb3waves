@@ -1,0 +1,38 @@
+.Counter {
+  display: flex;
+  align-items: center;
+
+
+  &__title {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 18px;
+
+    margin-right: 8px;
+  }
+
+  &__counter {
+    border: 1px solid #A0A6C3;
+    border-radius: 4px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    min-width: 102px;
+    justify-content: space-between;
+
+    @media screen and (max-width: 768px) {
+      background-color: #fff;
+    }
+  }
+
+  &__count {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+  }
+
+  &__action {
+    cursor: pointer;
+    user-select: none;
+  }
+}

@@ -1,0 +1,45 @@
+$header-height: 131px;
+$footer-height: 292px;
+
+
+.FormPage {
+  background: #f2f2f2;
+  min-height: calc(100vh - #{$header-height} - #{$footer-height});
+
+  padding: 48px 114px 68px;
+
+  @media screen and (max-width: 1200px) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    padding: 48px 40px;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 30px 20px;
+  }
+
+  &__title {
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 18px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 18px;
+      margin-bottom: 14px;
+    }
+  }
+
+  &__sub-title {
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 38px;
+
+    @media screen and (max-width: 768px) {
+      margin-bottom: 20px;
+    }
+  }
+}
