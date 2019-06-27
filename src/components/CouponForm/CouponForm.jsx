@@ -13,6 +13,83 @@ const bem = html.bem('CouponForm');
 
 export default class CouponForm extends React.PureComponent {
 
+    voteforproject(vote) {
+
+        let testCommitSaltStatusValues = {
+            no: "HXatbtd3THY6FURCGb7PPmogYbQM5ibifg9gtcnDmfAo", // это хэш от строки randomstring1delisted
+            yes: "3GAzarVTT2Vt8WdCnJDZKny1grGwwuh76SeWpd4SKJxN"
+          }
+        let testRevealValues = {
+            no: "delisted",
+            yes: "featured"
+          }
+        let tcrRandomSalt = {
+            no: "randomstring1",
+            yes: "randomstring2"
+          }
+
+        const txCommit = { //транзакция коммит
+            type: 16,
+            data: {
+                fee: {
+                    assetId: "WAVES",
+                    tokens: "0.005"
+                },
+                dApp: "3NBiXxLpuHVS2dGSaLvyPfCQYMPRKCtGCVg",
+                call: {
+                    args: [{
+                        type: "string",
+                        value: window.projectToVote.item
+                    },
+                    {
+                        type: "string",
+                        value: testCommitSaltStatusValues[vote]
+                    }
+                ],
+                    function: "votecommit"
+                },
+                payment: [{
+                    tokens: "0.03", //2*let VOTEBET = 150000000/1000
+                    assetId: null
+                }]
+            }
+        };
+
+        const txReveal = { //отложеная ревеал транзакция
+            type: 16,
+            data: {
+                fee: {
+                    assetId: "WAVES",
+                    tokens: "0.005"
+                },
+                dApp: "3NBiXxLpuHVS2dGSaLvyPfCQYMPRKCtGCVg",
+                call: {
+                    args: [{
+                        type: "string",
+                        value: window.projectToVote.item
+                    },
+                    {
+                        type: "string",
+                        value: testRevealValues[vote]
+                    },
+                    {
+                        type: "string",
+                        value: testCommitSaltStatusValues[vote]
+                    }
+                ],
+                    function: "votereveal"
+                },
+                payment: []
+            }
+        };
+        
+        let txCommit = await WavesKeeper.signTransaction(txCommit); //кипер подпишет сразу пачку
+        let txReveal = await WavesKeeper.signTransaction(txReveal); //кипер подпишет сразу пачку
+
+        let result = await window.wt.broadcast(JSON.parse(signedTx4), "https://testnodes.wavesnodes.com");
+        localStorage.setItem(testCommitSaltStatusValues[vote], txReveal); //  положили в локалсторадж 
+    }
+
     render() {
         return (
             <div className={bem.block()}>
@@ -27,7 +104,7 @@ export default class CouponForm extends React.PureComponent {
                                 discount={10}
                                 id={1}
                                 image="https://cdn1.savepice.ru/uploads/2019/6/5/f083cab4bf636dbe751636671a40dbd0-full.png"
-                                longDescription="Famous airpods headphones from the company Apple"
+                                longDescription="Wow! Famous airpods headphones from the company Apple"
                                 longTitle="Lorem Impusm..."
                                 name="Apple AirPods"
                                 newPrice="143.1"
@@ -35,7 +112,7 @@ export default class CouponForm extends React.PureComponent {
                                 priceTerm="$"
                                 rating={4}
                                 ratings={195}
-                                shortDescription="The best, bla bla bla"
+                                shortDescription="WooooW!The best, bla bla bla"
                                 status="purchased"
                                 title="Megaplaza"
                             />
@@ -116,12 +193,14 @@ export default class CouponForm extends React.PureComponent {
                 </div>
                 <div className={bem.element('footer')}>
                     <Button
-                        action={'save'}
-                        label={'Save'}
+                        onClick = {() => voteforproject("no")}
+                        action={'cancel'}
+                        label={'No'}
                     />
                     <Button
-                        action={'cancel'}
-                        label={'Cancel'}
+                        onClick = {() => voteforproject("yes")}
+                        action={'save'}
+                        label={'Yes'}
                     />
                 </div>
             </div>
